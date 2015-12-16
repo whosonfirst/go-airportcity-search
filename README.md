@@ -78,15 +78,16 @@ $> curl -s 'http://localhost:8080?q=TRUDEAU' | python -mjson.tool
 ]
 ```
 
-_The absence of names in the response is a bug._
+_The absence of names in the response is a bug. Because Go is weird._
 
 ## Caveats
 
 In no particular order:
 
-* This is work in progress
-* It uses the [Bleve fulltext document index](http://www.blevesearch.com/) for all the heavy-lifting
-* It will likely be abstracted out in to a (hopefully) generic `go-whosonfirst-bleve` package
+* This is work in progress.
+* It uses the [Bleve fulltext document index](http://www.blevesearch.com/) for all the heavy-lifting.
+* It will likely be abstracted out in to a (hopefully) generic `go-whosonfirst-bleve` package.
+* The indexing tool currently assumes that all WOF records of placetype `campus` are airports. This is not true.
 
 ## See also
 
