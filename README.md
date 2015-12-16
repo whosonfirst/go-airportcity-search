@@ -88,6 +88,7 @@ In no particular order:
 * It uses the [Bleve fulltext document index](http://www.blevesearch.com/) for all the heavy-lifting.
 * It will likely be abstracted out in to a (hopefully) generic `go-whosonfirst-bleve` package.
 * The indexing tool currently assumes that all WOF records of placetype `campus` are airports. This is not true.
+* Needs logging.
 
 ## See also
 
