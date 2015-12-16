@@ -1,0 +1,6 @@
+*~
+pkg
+src
+bin/wof-*
+*/index_meta.json
+*/store
