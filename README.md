@@ -73,12 +73,14 @@ $> curl -s 'http://localhost:8080?q=TRUDEAU' | python -mjson.tool
         "Id": 102554351,
         "Latitude": 45.463215,
         "Longitude": -73.744442,
-        "Names": []
+        "Names": [
+            "A\u00e9roport International Pierre-Elliott-Trudeau de Montreal",
+            "YUL",
+            "CYUL"
+        ]
     }
 ]
 ```
-
-_The absence of names in the response is a bug. Because Go is weird._
 
 ## Caveats
 
