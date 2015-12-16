@@ -4,7 +4,7 @@ An airport specific search engine for Airport City, using Who's On First data.
 
 ## Set up
 
-Use the handy `Makefile` for fetching dependencies and building the wof-airportcity binaries, like this:
+Use the handy `Makefile` for fetching dependencies and building the `wof-airportcity-*` binaries, like this:
 
 ```
 $> make deps
