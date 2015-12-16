@@ -2,12 +2,44 @@
 
 An airport specific search engine for Airport City, using Who's On First data.
 
+## Set up
+
+Use the handy `Makefile` for fetching dependencies and building the wof-airportcity binaries, like this:
+
+```
+$> make deps
+if test -d pkg; then rm -rf pkg; fi
+go get -u "github.com/blevesearch/bleve"
+go get -u "github.com/whosonfirst/go-whosonfirst-csv"
+go get -u "github.com/whosonfirst/go-whosonfirst-geojson"
+```
+
+And then:
+
+```
+$> make bin
+if test -d pkg; then rm -rf pkg; fi
+go build -o bin/wof-airportcity-index cmd/wof-airportcity-index.go
+go build -o bin/wof-airportcity-query cmd/wof-airportcity-query.go
+go build -o bin/wof-airportcity-server cmd/wof-airportcity-server.go
+```
+
 ## Usage
 
 ### wof-airportcity-index
 
 ```
 $> ./bin/wof-airportcity-index -db test -source /usr/local/mapzen/whosonfirst-data/data/ /usr/local/mapzen/whosonfirst-data/meta/wof-campus-latest.csv
+&{102544341 %!s(float64=3.95944) %!s(float64=-59.124199) [Annai Airport NAI SYAN]}
+&{102544219 %!s(float64=55.063301) %!s(float64=14.7596) [Bornholm Lufthavn RNN EKRN]}
+&{102544125 %!s(float64=32.325001) %!s(float64=15.061) [Misurata Airport MRA LY-MRA]}
+&{102544685 %!s(float64=43.323502) %!s(float64=3.3539) [Aéroport Béziers-Vias LFMU BZR]}
+&{102544735 %!s(float64=43.556301) %!s(float64=2.28918) [Aéroport Castres-Mazamet DCM LFCK]}
+&{102544009 %!s(float64=54.639199) %!s(float64=25.295658) [Vilnius Airport]}
+&{102544597 %!s(float64=-4.6204) %!s(float64=143.4516) [Mont de Marsan Airport MDM AYDK]}
+&{102544823 %!s(float64=45.658298) %!s(float64=-0.3175) [Aéroport Cognac-Châteaubernard LFBG CNG]}
+&{102544861 %!s(float64=47.986841) %!s(float64=1.769192) [Bricy Airport]}
+# and so on...
 ```
 
 ### wof-airportcity-query
