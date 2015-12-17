@@ -46,8 +46,17 @@ func search(index bleve.Index, q string) ([]*WOFRecord, error) {
 		lon := f["Longitude"].(float64)
 		names := make([]string, 0)
 
-		for x, n := range f["Names"].([]interface{}) {
-			names = append(names, n.(string))
+		switch f["Names"].(type) {
+
+		case string:
+
+			for _, n := range f["Names"].(string) {
+				names = append(names, string(n))
+			}
+		default:
+			for _, n := range f["Names"].([]interface{}) {
+				names = append(names, n.(string))
+			}
 		}
 
 		record := &WOFRecord{Id: id, Latitude: lat, Longitude: lon, Names: names}
