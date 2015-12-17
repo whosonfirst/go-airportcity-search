@@ -50,9 +50,14 @@ func search(index bleve.Index, q string) ([]*WOFRecord, error) {
 
 		case string:
 
+			names = append(names, f["Names"].(string))
+
+		case []string:
+
 			for _, n := range f["Names"].(string) {
 				names = append(names, string(n))
 			}
+
 		default:
 			for _, n := range f["Names"].([]interface{}) {
 				names = append(names, n.(string))
