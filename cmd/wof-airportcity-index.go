@@ -8,6 +8,7 @@ import (
 	geojson "github.com/whosonfirst/go-whosonfirst-geojson"
 	"io"
 	"path"
+	"strings"
 	"strconv"
 )
 
@@ -18,6 +19,12 @@ type WOFRecord struct {
 	Latitude  float64
 	Longitude float64
 	Names     []string
+}
+
+func (r *WOFRecord) String() string {
+     names := strings.Join(r.Names, ",")
+
+     return fmt.Sprintf("%s %s (%.06f,%.06f)", r.Id, names, r.Latitude, r.Longitude)
 }
 
 func main() {
@@ -97,6 +104,19 @@ func main() {
 
 			properties, _ := body.S("properties").ChildrenMap()
 
+			// Ensure is airport
+
+			_, ok = properties["wof:category"]
+
+			if ok {
+			   cat := properties["wof:category"].Data().(string)
+
+			   if cat != "airport" {
+			      fmt.Printf("skip non-airport campus (%s)\n", cat)
+			      continue
+			   }
+			}			   
+
 			for key, details := range properties {
 
 				if key != "wof:concordances" {
@@ -132,7 +152,8 @@ func main() {
 			}
 
 			record := &WOFRecord{Id: str_id, Names: names, Latitude: lat, Longitude: lon}
-			fmt.Printf("%s\n", record)
+			fmt.Println(record)
+
 			index.Index(str_id, record)
 		}
 	}
